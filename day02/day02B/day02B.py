@@ -1,13 +1,11 @@
 if __name__ == "__main__":
-    requirements = {"red" : 12, "green": 13, "blue": 14}
     answer = 0
 
     with open(r"day02/day02A/input") as file:
         for game in file:
-            gamePossible = True
+            requirements = {"red" : 0, "green": 0, "blue": 0}
             fullGame = game.split(":")
 
-            gameID = int(fullGame[0].split(" ")[1])
             revealList = fullGame[1].split(";")
 
             for reveal in revealList:
@@ -15,14 +13,10 @@ if __name__ == "__main__":
                     cubeNumber = int(cube.split(" ")[1])
                     cubeColour = cube.split(" ")[2].rstrip()
 
-                    if (requirements.get(cubeColour) == None):
-                        gamePossible = False
-                    elif (cubeNumber > requirements.get(cubeColour)):
-                        gamePossible = False
-
-            if (gamePossible): 
-                answer  += gameID
-
+                    if (cubeNumber > requirements[cubeColour]):
+                        requirements[cubeColour] = cubeNumber
+            
+            answer = answer + requirements["red"] * requirements[ "green"] * requirements["blue"]
     print(answer)
                 
 

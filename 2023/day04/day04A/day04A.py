@@ -11,4 +11,17 @@ if __name__ == "__main__":
             winingNums = line.split("|")[0].split(" ")
             nums = line.split("|")[1].split(" ")
 
+            winningNum = 0
+
+            for wNum in winingNums:
+                if wNum == "":
+                    continue
+                for num in nums:
+                    if num == "":
+                        continue
+                    if wNum == num:
+                        winningNum = winningNum * 2 if winningNum > 0 else 1
+            
+            answer += winningNum
+
     print (answer)

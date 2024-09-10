@@ -1,7 +1,6 @@
 if __name__ == "__main__":
-    answer = 0
+    answer = 0 
 
-    #with open(r"/day04/day04A/input") as file:
     with open(r"2023/day04/day04A/input") as file:
         for line in file:
             # Inpput example

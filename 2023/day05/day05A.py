@@ -22,10 +22,25 @@ if __name__ == "__main__":
                 mappingState = ""
             
 
-    for key in mapDict.keys():
-        print(key)
-        print(mapDict[key])
+    seedsMapped = []
+    for seed in seeds:                  # for each seed
+        mapping = seed
+        for mapKey in mapDict.keys():   # for each map in mapDict(seed-to-soil, soild-to-fertilizer,...)
+            mappingList = mapDict[mapKey]
 
-   
-                    
-            
+            for m in mappingList:
+                sourceR = m[1]  # in seed-to-soil this is seed
+                destR = m[0]    # in seed-to-soil this is soil
+                R = m[2]        # range
+
+                if mapping >= sourceR and mapping < sourceR + R:
+                    mapping = destR + (mapping - sourceR)
+                    break
+        
+        if answer == 0 or answer > mapping:
+            answer = mapping
+
+    print(answer)
+
+
+    

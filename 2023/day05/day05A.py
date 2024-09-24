@@ -2,23 +2,30 @@ if __name__ == "__main__":
     answer = 0
 
     mappingState = ""
-
-    s2s = []
+    mapDict = {"seed-to-soil":[], 
+               "soil-to-fertilizer":[], 
+               "fertilizer-to-water": [], 
+               "water-to-light": [], 
+               "light-to-temperature":[],
+               "temperature-to-humidity":[],
+               "humidity-to-location":[]}
+    
     with open(r"2023/day05/input") as file:
         for line in file:
-            if line != '\n':
-                if "seeds:" in line:
-                    seedList = line.split()
-                elif "seed-to-soil"  in line or mappingState == "seed-to-soil":
-                    if mappingState == "":
-                        mappingState = "seed-to-soil"
-                    else:
-                        s2s.append(line.split())
+            if "seeds:" in line:
+                seeds = line.split(":")[1].split()
+            elif mappingState == "" and "map:" in line:
+                mappingState = line.split()[0]
+            elif mappingState != "" and line != "\n":
+                mapDict[mappingState].append(line.split())
             else:
-                mappingState=""
-                
-    print(seedList)
-    print(s2s)
+                mappingState = ""
+            
 
+    for key in mapDict.keys():
+        print(key)
+        print(mapDict[key])
+
+   
                     
             

@@ -21,26 +21,28 @@ if __name__ == "__main__":
             else:
                 mappingState = ""
     
-    seedBuffer = 0
+    #seedBuffer = 0
     actualSeeds = []
     for i in range(0,len(seeds)):
-        if i % 2 == 0: # is range of seeds
-            for j in range(seedBuffer, seedBuffer + int(seeds[i])):
-                actualSeeds.append(seedBuffer+j)
-        else: # is seed
-            seedBuffer = int(seeds[i])
-            actualSeeds.append(seedBuffer)
+        # if i % 2 == 0: # is range of seeds
+        #     for j in range(seedBuffer, seedBuffer + int(seeds[i])):
+        #         actualSeeds.append(seedBuffer+j)
+        # else: # is seed
+        #     seedBuffer = int(seeds[i])
+        #     actualSeeds.append(seedBuffer)
+        if i %2 == 0:
+            actualSeeds.append(int(seeds[i]))
 
-    seedsMapped = []
-    for seed in actualSeeds:                  # for each seed
+
+    for seed in actualSeeds:
         mapping = seed
         for mapKey in mapDict.keys():   # for each map in mapDict(seed-to-soil, soild-to-fertilizer,...)
             mappingList = mapDict[mapKey]
 
             for m in mappingList:
-                sourceR = m[1]  # in seed-to-soil this is seed
-                destR = m[0]    # in seed-to-soil this is soil
-                R = m[2]        # range
+                sourceR = int(m[1])  # in seed-to-soil this is seed
+                destR = int(m[0])    # in seed-to-soil this is soil
+                R = int(m[2])        # range
 
                 if mapping >= sourceR and mapping < sourceR + R:
                     mapping = destR + (mapping - sourceR)

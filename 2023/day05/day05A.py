@@ -21,17 +21,16 @@ if __name__ == "__main__":
             else:
                 mappingState = ""
             
-
     seedsMapped = []
     for seed in seeds:                  # for each seed
-        mapping = seed
+        mapping = int(seed)
         for mapKey in mapDict.keys():   # for each map in mapDict(seed-to-soil, soild-to-fertilizer,...)
             mappingList = mapDict[mapKey]
 
             for m in mappingList:
-                sourceR = m[1]  # in seed-to-soil this is seed
-                destR = m[0]    # in seed-to-soil this is soil
-                R = m[2]        # range
+                sourceR = int(m[1])  # in seed-to-soil this is seed
+                destR = int(m[0])    # in seed-to-soil this is soil
+                R = int(m[2])        # range
 
                 if mapping >= sourceR and mapping < sourceR + R:
                     mapping = destR + (mapping - sourceR)
